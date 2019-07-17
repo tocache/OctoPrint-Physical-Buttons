@@ -46,7 +46,14 @@ class PhysicalButtonsPlugin(octoprint.plugin.StartupPlugin,
 			pause = -1,
 			stop = -1,
 			bounce = 300,
-			stopcode = "M702 C G4 M104 S0 M140 S0 M107 G1 X0 Y200 F3000 M84"
+			stopcode = "M112"
+			cancel1 = "M702 C"
+			cancel2 = "G4"
+			cancel3 = "M104 S0"
+			cancel4 = "M140 S0"
+			cancel5 = "M107"
+			cancel6 = "G1 X0 Y200 F3000"
+			cancel7 = "M84"
 		)
 
 	@octoprint.plugin.BlueprintPlugin.route("/status", methods=["GET"])
@@ -98,8 +105,10 @@ class PhysicalButtonsPlugin(octoprint.plugin.StartupPlugin,
 			# self._logger.debug("Pause button ([%s]) state [%s]"%(channel, state))
 			if self._printer.is_printing():
 				self._printer.toggle_pause_print()
+				self._printer.commands("M117 Printer paused")
 			elif self._printer.is_paused():
 				self._printer.resume_print()
+				self._printer.commands("M117 Resuming job")
 
 		# state2 = GPIO.input(self.PIN_STOP)
 		# if not state2: 
@@ -107,10 +116,12 @@ class PhysicalButtonsPlugin(octoprint.plugin.StartupPlugin,
 			self._logger.debug("Stop button pushed")
 			# self._logger.debug("Stop button ([%s]) state [%s]"%(channel, state2))
 			if self._printer.is_printing():
-				# self._printer.cancel_print()
-				self._printer.commands(self.STOPCODE)
-			elif self._printer.is_paused():
 				self._printer.cancel_print()
+				self._printer.commands("M117 Job cancelled")
+				# self._printer.commands(self.STOPCODE)
+			elif self._printer.is_paused():
+				# self._printer.cancel_print()
+				self._printer.commands("M117 Job cancelled")
 			# elif self._printer.is_ready():
 			# 	self._printer.start_print()
 
