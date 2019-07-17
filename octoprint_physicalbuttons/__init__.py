@@ -46,7 +46,7 @@ class PhysicalButtonsPlugin(octoprint.plugin.StartupPlugin,
 			pause = -1,
 			stop = -1,
 			bounce = 400,
-			# stopcode = "M112",
+			stopcode = "M112",
 		)
 
 	@octoprint.plugin.BlueprintPlugin.route("/status", methods=["GET"])
@@ -109,17 +109,18 @@ class PhysicalButtonsPlugin(octoprint.plugin.StartupPlugin,
 			self._logger.debug("Stop button pushed")
 			# self._logger.debug("Stop button ([%s]) state [%s]"%(channel, state2))
 			if self._printer.is_printing():
-				self._printer.commands("M117 Job cancelled")
-				self._printer.cancel_print()
-				# self._printer.commands(self.STOPCODE)
+				self._printer.commands("M117 Emergency Stop")
+				# self._printer.commands("M112")
+				# self._printer.cancel_print()
+				self._printer.commands(self.STOPCODE)
 			elif self._printer.is_paused():
-				#self._printer.commands("M702 C")"G4", "M104 S0", "M140 S0", "M107", "G1 X0 Y200 F3000", "M84")
-				self._printer.commands("G4")
-				self._printer.commands("M104 S0")
-				self._printer.commands("M140 S0")
-				self._printer.commands("M107")
-				self._printer.commands("G1 X0 Y200 F3000")
-				self._printer.commands("M84")
+				self._printer.commands("M702 C" "G4" "M104 S0" "M140 S0" "M107" "G1 X0 Y200 F3000" "M84")
+				#self._printer.commands("G4")
+				#self._printer.commands("M104 S0")
+				#self._printer.commands("M140 S0")
+				#self._printer.commands("M107")
+				#self._printer.commands("G1 X0 Y200 F3000")
+				#self._printer.commands("M84")
 				self._printer.commands("M117 Job cancelled")
 				self._printer.cancel_print()
 			# elif self._printer.is_ready():
@@ -136,12 +137,12 @@ class PhysicalButtonsPlugin(octoprint.plugin.StartupPlugin,
 
 				# version check: github repository
 				type="github_release",
-				user="netlands",
+				user="tocache",
 				repo="Octoprint-Physical-Buttons",
 				current=self._plugin_version,
 
 				# update method: pip
-				pip="https://github.com/netlands/OctoPrint-Physical-Buttons/archive/{target_version}.zip"
+				pip="https://github.com/tocache/OctoPrint-Physical-Buttons/archive/{target_version}.zip"
 			)
 		)
 
