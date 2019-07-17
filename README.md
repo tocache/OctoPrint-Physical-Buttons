@@ -1,4 +1,4 @@
-# OctoPrint-Physical-Buttons v0.0.7
+# OctoPrint-Physical-Buttons v0.0.8
 
 This plugin allows you to add a physical Pause (Resume) button and an Stop (cancel command) button to OctoPrint.
 
