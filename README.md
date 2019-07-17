@@ -1,6 +1,8 @@
-# OctoPrint-Physical-Buttons
+# OctoPrint-Physical-Buttons v0.0.3
 
-This plugin allows you to add a physical Pause (Resume) button and an emergency Stop button to OctoPrint.
+This plugin allows you to add a physical Pause (Resume) button and an Stop (cancel command) button to OctoPrint.
+
+Code is based on **OctoPrint-Physical_Buttons** by **netlands** (https://github.com/netlands/OctoPrint-Physical-Buttons).
 
 Code is based almost completely on the **Octoprint-Filament plugin** by **ǝuıɥsuooɯ** (https://github.com/MoonshineSG/Octoprint-Filament).
 
@@ -28,6 +30,7 @@ XX are the GPIO pin numbers on your Raspberry Pi to which the buttons are connec
 Note that the current version of the plugin uses *physical pin numbers*, e.g., on a Raspberry Pi 3 GPIO21 equals physical pin 40. See also https://pinout.xyz/
 
 Save the changes with **Ctrl-X** and then **Y** (for yes).
+It will show a confirmation of overwrite file, press Enter.
 
  #### 2. Give GPIO device access to non-root users 
  
