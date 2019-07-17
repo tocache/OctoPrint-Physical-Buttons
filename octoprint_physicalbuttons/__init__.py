@@ -146,7 +146,7 @@ class PhysicalButtonsPlugin(octoprint.plugin.StartupPlugin,
 		)
 
 __plugin_name__ = "Physical Buttons"
-__plugin_version__ = "0.0.3"
+__plugin_version__ = "0.0.7"
 __plugin_description__ = "Use physical buttons to pause and cancel printing."
 
 def __plugin_load__():
