@@ -36,7 +36,7 @@ Save the changes with **Ctrl-X** and then **Y** (for yes).
  #### 3. Install the plugin in OctoPrint using the **Plugin Manager** 
 Download the latest version, or install directly using the URL:  
 
-https://github.com/netlands/OctoPrint-Physical-Buttons/archive/master.zip
+https://github.com/tocache/OctoPrint-Physical-Buttons/archive/master.zip
  
 Click **Settings** (the Tool icon at the top) > **Plugin Manager**
 
