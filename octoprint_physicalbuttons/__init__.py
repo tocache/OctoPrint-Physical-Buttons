@@ -114,13 +114,6 @@ class PhysicalButtonsPlugin(octoprint.plugin.StartupPlugin,
 				# self._printer.cancel_print()
 				self._printer.commands(self.STOPCODE)
 			elif self._printer.is_paused():
-				self._printer.commands("M702 C"; "G4"; "M104 S0"; "M140 S0"; "M107"; "G1 X0 Y200 F3000"; "M84")
-				#self._printer.commands("G4")
-				#self._printer.commands("M104 S0")
-				#self._printer.commands("M140 S0")
-				#self._printer.commands("M107")
-				#self._printer.commands("G1 X0 Y200 F3000")
-				#self._printer.commands("M84")
 				self._printer.commands("M117 Job cancelled")
 				self._printer.cancel_print()
 			# elif self._printer.is_ready():
