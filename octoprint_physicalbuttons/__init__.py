@@ -102,7 +102,8 @@ class PhysicalButtonsPlugin(octoprint.plugin.StartupPlugin,
 			elif self._printer.is_paused():
 				self._printer.resume_print()
 				# self._printer.commands("M117 Resuming job")
-
+			elif self._printer.is_ready():
+				self._printer.commands("M117 PAUSE button pressed")
 		# state2 = GPIO.input(self.PIN_STOP)
 		# if not state2: 
 		elif channel == self.PIN_STOP:
@@ -116,8 +117,9 @@ class PhysicalButtonsPlugin(octoprint.plugin.StartupPlugin,
 			elif self._printer.is_paused():
 				self._printer.commands("M117 Job cancelled")
 				self._printer.cancel_print()
-			# elif self._printer.is_ready():
+			elif self._printer.is_ready():
 			# 	self._printer.start_print()
+				self._printer.commands("M117 STOP button pressed")
 
 	def get_version(self):
 		return self._plugin_version
